@@ -1,5 +1,4 @@
 import java.util.UUID;
-import java.util.Random;
 
 public class Character {
     private final String id;
