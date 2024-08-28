@@ -22,7 +22,7 @@ public class Wizard extends Character implements Attacker{
 
 
     @Override
-    public void attack(Character character) {
+    public void attack(Character characterToAttack) {
 
     }
 }
