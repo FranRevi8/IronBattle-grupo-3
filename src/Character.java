@@ -6,12 +6,14 @@ public class Character implements Attacker{
     private int hp;
     private boolean isAlive = true;
     private final CharacterType type;
+    private int currentHp;
 
     public Character(String name, CharacterType type, int hp) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.type = type;
         this.hp = hp;
+        this.currentHp = hp;
     }
 
     public String getId() {
@@ -30,11 +32,17 @@ public class Character implements Attacker{
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
-        if (this.hp <= 0) {
-            this.hp = 0;
+    public int getCurrentHp() {
+        return currentHp;
+    }
+
+    public void setCurrentHp(int hp) {
+        this.currentHp = hp;
+        if (this.currentHp <= 0) {
+            this.currentHp = 0;
             this.isAlive = false;
+        }else if(!this.isAlive){
+            this.isAlive = true;
         }
     }
 

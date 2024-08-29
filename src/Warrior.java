@@ -32,15 +32,16 @@ public class Warrior extends Character{
         int damageWeakAttack = strength/2;
         int attackToDo = 1 + random.nextInt(2);
         int hp = characterToAttack.getHp();
+        int currentHp = characterToAttack.getCurrentHp();
 
         if(attackToDo == 1){
-            hp -= damageHeavyAttack;
+            currentHp -= damageHeavyAttack;
         }else{
-            hp -= damageWeakAttack;
+           currentHp -= damageWeakAttack;
         }
-        characterToAttack.setHp(hp);
+        characterToAttack.setCurrentHp(currentHp);
 
-        System.out.println("\n" + this.getName() + " ha atacado y ha dejado a " + characterToAttack.getName() +" con " + characterToAttack.getHp() + " puntos de vida.");
+        System.out.println("\n" + this.getName() + " ha atacado y ha dejado a " + characterToAttack.getName() +" con " + characterToAttack.getCurrentHp() + " puntos de vida.");
 
     }
 }

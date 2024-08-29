@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        play();
+    }
+
+    private static void play() {
         System.out.println("\nBienvenido al juego IRONBATTLE");
         System.out.println("\nLas reglas son las siguientes:");
         System.out.println("\n1. Se enfrentarán dos personajes. Tienes que elegir la clase de cada uno, además de sus nombres.");
@@ -30,7 +34,9 @@ public class Main {
 
         String input = scanner.nextLine();
 
-        if (input.toLowerCase().equals("x")){return;}
+        if (input.toLowerCase().equals("x")) {
+            return;
+        }
 
         int response = Integer.parseInt(input);
 
@@ -67,7 +73,9 @@ public class Main {
         ;
 
         input = scanner.nextLine();
-        if (input.toLowerCase().equals("x")){return;}
+        if (input.toLowerCase().equals("x")) {
+            return;
+        }
 
         response = Integer.parseInt(input);
 
@@ -102,20 +110,29 @@ public class Main {
             System.out.println("\nPulsa ENTER para continuar");
 
             input = scanner.nextLine();
-            if (input.toLowerCase().equals("x")){return;}
+            if (input.toLowerCase().equals("x")) {
+                return;
+            }
 
             character1.attack(character2);
             character2.attack(character1);
 
+            if(!character1.getIsAlive() && !character2.getIsAlive()) {
+                System.out.println("\n¡Ha habido un empate!");
+                System.out.println("\nSe procede a la revancha");
+
+                character1.setCurrentHp(character1.getHp());
+                character2.setCurrentHp(character2.getHp());
+            }
+
         } while (character1.getIsAlive() && character2.getIsAlive());
 
-        if(character1.getIsAlive()){
+        if (character1.getIsAlive()) {
             System.out.println("\n¡Ha ganado " + character1.getName() + "!");
-        }else if(character2.getIsAlive()) {
+        } else  {
             System.out.println("\n¡Ha ganado " + character2.getName() + "!");
-        }else{
-            System.out.println("\n¡Ha habido un empate!");
         }
+
     }
-    private void repeat(){}
+
 }
