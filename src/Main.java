@@ -105,6 +105,32 @@ public class Main {
         ;
 
         System.out.println("\n¡Se enfrentarán " + character1.getName() + " y " + character2.getName() + "!");
+        System.out.println("\n" + character1.getName() + " cuenta con " + character1.getHp() + " puntos de vida" + " y " + character2.getName() + " cuenta con " + character2.getHp()+ ".");
+
+        switch(character1.getType()){
+            case WIZARD :
+                Wizard wizard = (Wizard) character1;
+                System.out.println(character1.getName() + " tiene " + wizard.getMana() + " puntos de Maná y " + wizard.getIntelligence() + " puntos de Inteligencia.");
+                break;
+            case WARRIOR:
+                Warrior warrior = (Warrior) character1;
+                System.out.println(character1.getName() + " tiene " + warrior.getStamina() + " puntos de Estamina y " + warrior.getStrength() + " puntos de Fuerza.");
+                break;
+            default:
+        }
+
+        switch(character2.getType()){
+            case WIZARD :
+                Wizard wizard = (Wizard) character2;
+                System.out.println(character2.getName() + " tiene " + wizard.getMana() + " puntos de Maná y " + wizard.getIntelligence() + " puntos de Inteligencia.");
+                break;
+            case WARRIOR:
+                Warrior warrior = (Warrior) character2;
+                System.out.println(character2.getName() + " tiene " + warrior.getStamina() + " puntos de Estamina y " + warrior.getStrength() + " puntos de Fuerza.");
+                break;
+            default:
+        }
+
         System.out.println("\n¡Empieza el combate!");
         do {
             System.out.println("\nPulsa ENTER para continuar");

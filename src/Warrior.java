@@ -34,14 +34,19 @@ public class Warrior extends Character{
         int hp = characterToAttack.getHp();
         int currentHp = characterToAttack.getCurrentHp();
 
-        if(attackToDo == 1){
+        if(attackToDo == 1 && stamina >= 5){
             currentHp -= damageHeavyAttack;
+            stamina -= 5;
+            System.out.println("\n" + this.getName() + " usa un Ataque Pesado");
         }else{
-           currentHp -= damageWeakAttack;
+            currentHp -= damageWeakAttack;
+            stamina += 1;
+            System.out.println("\n" + this.getName() + " usa un Ataque Ligero");
         }
         characterToAttack.setCurrentHp(currentHp);
 
-        System.out.println("\n" + this.getName() + " ha atacado y ha dejado a " + characterToAttack.getName() +" con " + characterToAttack.getCurrentHp() + " puntos de vida.");
+        super.attack(characterToAttack);
+        System.out.println("La Estamina restante de " + this.getName() + " es " + this.getStamina());
 
     }
 }

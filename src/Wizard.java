@@ -34,14 +34,20 @@ public class Wizard extends Character{
         int hp = characterToAttack.getHp();
         int currentHp = characterToAttack.getCurrentHp();
 
-        if(attackToDo == 1){
+        if(attackToDo == 1 && mana >= 5){
             currentHp -= damageHeavyAttack;
+            mana -= 5;
+            System.out.println("\n" + this.getName() + " usa una Bola de Fuego");
         }else{
             currentHp -= damageWeakAttack;
+            mana += 1;
+            System.out.println("\n" + this.getName() + " usa un Golpe de Bastón");
         }
         characterToAttack.setCurrentHp(currentHp);
 
-        System.out.println("\n" + this.getName() + " ha atacado y ha dejado a " + characterToAttack.getName() +" con " + characterToAttack.getCurrentHp() + " puntos de vida.");
+        super.attack(characterToAttack);
+        System.out.println("El Maná restante de " + this.getName() + " es " + this.getMana());
+
     }
 }
 

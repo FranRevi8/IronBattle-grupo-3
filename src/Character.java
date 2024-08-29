@@ -3,7 +3,7 @@ import java.util.UUID;
 public class Character implements Attacker{
     private final String id;
     private String name;
-    private int hp;
+    private final int hp;
     private boolean isAlive = true;
     private final CharacterType type;
     private int currentHp;
@@ -56,6 +56,6 @@ public class Character implements Attacker{
 
     @Override
     public void attack(Character characterToAttack) {
-
+        System.out.println("\n" + this.getName() + " ha dejado a " + characterToAttack.getName() +" con " + characterToAttack.getCurrentHp() + " puntos de vida.");
     }
 }
