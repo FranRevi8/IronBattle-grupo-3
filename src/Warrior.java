@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Warrior extends Character{
+public class Warrior extends Character {
     private int stamina;
     private final int strength;
 
@@ -29,16 +29,16 @@ public class Warrior extends Character{
         Random random = new Random();
 
         int damageHeavyAttack = strength;
-        int damageWeakAttack = strength/2;
+        int damageWeakAttack = strength / 2;
         int attackToDo = 1 + random.nextInt(2);
         int hp = characterToAttack.getHp();
         int currentHp = characterToAttack.getCurrentHp();
 
-        if(attackToDo == 1 && stamina >= 5){
+        if (attackToDo == 1 && stamina >= 5) {
             currentHp -= damageHeavyAttack;
             stamina -= 5;
             System.out.println("\n" + this.getName() + " usa un Ataque Pesado");
-        }else{
+        } else {
             currentHp -= damageWeakAttack;
             stamina += 1;
             System.out.println("\n" + this.getName() + " usa un Ataque Ligero");

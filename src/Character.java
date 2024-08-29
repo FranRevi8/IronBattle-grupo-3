@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-public class Character implements Attacker{
+public class Character implements Attacker {
     private final String id;
     private String name;
     private final int hp;
@@ -41,7 +41,7 @@ public class Character implements Attacker{
         if (this.currentHp <= 0) {
             this.currentHp = 0;
             this.isAlive = false;
-        }else if(!this.isAlive){
+        } else if (!this.isAlive) {
             this.isAlive = true;
         }
     }
@@ -56,6 +56,6 @@ public class Character implements Attacker{
 
     @Override
     public void attack(Character characterToAttack) {
-        System.out.println("\n" + this.getName() + " ha dejado a " + characterToAttack.getName() +" con " + characterToAttack.getCurrentHp() + " puntos de vida.");
+        System.out.println("\n" + this.getName() + " ha dejado a " + characterToAttack.getName() + " con " + characterToAttack.getCurrentHp() + " puntos de vida.");
     }
 }

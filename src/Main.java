@@ -3,10 +3,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        play();
-    }
-
-    private static void play() {
         System.out.println("\nBienvenido al juego IRONBATTLE");
         System.out.println("\nLas reglas son las siguientes:");
         System.out.println("\n1. Se enfrentarán dos personajes. Tienes que elegir la clase de cada uno, además de sus nombres.");
@@ -14,6 +10,24 @@ public class Main {
         System.out.println("3. ¡Sólo puede quedar uno! El combate continuará hasta que alguno de los combatientes sea dado de baja.");
         System.out.println("4. Si los dos personajes mueren a la vez habrá empate. El combate se repetirá.");
         System.out.println("5. Escribe X y pulsa ENTER en cualquier momento para salir.");
+        System.out.println("\nElige el método de juego (0 para crear tus propios personajes / 1 para personajes aleatorios)");
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        if (input.toLowerCase().equals("x")) {
+            return;
+        }
+
+        if (input.equals("0")) {
+            play();
+        } else if (input.equals("1")) {
+            autoPlay();
+        }
+    }
+
+    private static void play() {
+
         System.out.println("\nElige la clase del primer personaje:");
 
         String name;
@@ -105,10 +119,10 @@ public class Main {
         ;
 
         System.out.println("\n¡Se enfrentarán " + character1.getName() + " y " + character2.getName() + "!");
-        System.out.println("\n" + character1.getName() + " cuenta con " + character1.getHp() + " puntos de vida" + " y " + character2.getName() + " cuenta con " + character2.getHp()+ ".");
+        System.out.println("\n" + character1.getName() + " cuenta con " + character1.getHp() + " puntos de vida" + " y " + character2.getName() + " cuenta con " + character2.getHp() + ".");
 
-        switch(character1.getType()){
-            case WIZARD :
+        switch (character1.getType()) {
+            case WIZARD:
                 Wizard wizard = (Wizard) character1;
                 System.out.println(character1.getName() + " tiene " + wizard.getMana() + " puntos de Maná y " + wizard.getIntelligence() + " puntos de Inteligencia.");
                 break;
@@ -119,8 +133,8 @@ public class Main {
             default:
         }
 
-        switch(character2.getType()){
-            case WIZARD :
+        switch (character2.getType()) {
+            case WIZARD:
                 Wizard wizard = (Wizard) character2;
                 System.out.println(character2.getName() + " tiene " + wizard.getMana() + " puntos de Maná y " + wizard.getIntelligence() + " puntos de Inteligencia.");
                 break;
@@ -143,7 +157,7 @@ public class Main {
             character1.attack(character2);
             character2.attack(character1);
 
-            if(!character1.getIsAlive() && !character2.getIsAlive()) {
+            if (!character1.getIsAlive() && !character2.getIsAlive()) {
                 System.out.println("\n¡Ha habido un empate!");
                 System.out.println("\nSe procede a la revancha");
 
@@ -155,10 +169,108 @@ public class Main {
 
         if (character1.getIsAlive()) {
             System.out.println("\n¡Ha ganado " + character1.getName() + "!");
-        } else  {
+        } else {
             System.out.println("\n¡Ha ganado " + character2.getName() + "!");
         }
 
+    }
+
+    private static void autoPlay() {
+        String name;
+        CharacterType type;
+        int hp;
+
+        Character character1;
+        Character character2;
+
+        String input;
+
+        Random random = new Random();
+
+        Scanner scanner = new Scanner(System.in);
+
+        int randomCreator = 1 + random.nextInt(2);
+
+        if (randomCreator == 1) {
+            int strength = 1 + random.nextInt(10);
+            int stamina = 10 + random.nextInt(41);
+            hp = 100 + random.nextInt(101);
+            character1 = new Warrior("Jugador1", CharacterType.WARRIOR, hp, strength, stamina);
+        } else {
+            int mana = 10 + random.nextInt(41);
+            int intelligence = 1 + random.nextInt(50);
+            hp = 100 + random.nextInt(101);
+            character1 = new Wizard("Jugador1", CharacterType.WIZARD, hp, mana, intelligence);
+        }
+
+        randomCreator = 1 + random.nextInt(2);
+
+        if (randomCreator == 1) {
+            int strength = 1 + random.nextInt(10);
+            int stamina = 10 + random.nextInt(41);
+            hp = 100 + random.nextInt(101);
+            character2 = new Warrior("Jugador2", CharacterType.WARRIOR, hp, strength, stamina);
+        } else {
+            int mana = 10 + random.nextInt(41);
+            int intelligence = 1 + random.nextInt(50);
+            hp = 100 + random.nextInt(101);
+            character2 = new Wizard("Jugador2", CharacterType.WIZARD, hp, mana, intelligence);
+        }
+
+        System.out.println("\n¡Se enfrentarán " + character1.getName() + " y " + character2.getName() + "!");
+        System.out.println("\n" + character1.getName() + " cuenta con " + character1.getHp() + " puntos de vida" + " y " + character2.getName() + " cuenta con " + character2.getHp() + ".");
+
+        switch (character1.getType()) {
+            case WIZARD:
+                Wizard wizard = (Wizard) character1;
+                System.out.println(character1.getName() + " tiene " + wizard.getMana() + " puntos de Maná y " + wizard.getIntelligence() + " puntos de Inteligencia.");
+                break;
+            case WARRIOR:
+                Warrior warrior = (Warrior) character1;
+                System.out.println(character1.getName() + " tiene " + warrior.getStamina() + " puntos de Estamina y " + warrior.getStrength() + " puntos de Fuerza.");
+                break;
+            default:
+        }
+
+        switch (character2.getType()) {
+            case WIZARD:
+                Wizard wizard = (Wizard) character2;
+                System.out.println(character2.getName() + " tiene " + wizard.getMana() + " puntos de Maná y " + wizard.getIntelligence() + " puntos de Inteligencia.");
+                break;
+            case WARRIOR:
+                Warrior warrior = (Warrior) character2;
+                System.out.println(character2.getName() + " tiene " + warrior.getStamina() + " puntos de Estamina y " + warrior.getStrength() + " puntos de Fuerza.");
+                break;
+            default:
+        }
+
+        System.out.println("\n¡Empieza el combate!");
+        do {
+            System.out.println("\nPulsa ENTER para continuar");
+
+            input = scanner.nextLine();
+            if (input.toLowerCase().equals("x")) {
+                return;
+            }
+
+            character1.attack(character2);
+            character2.attack(character1);
+
+            if (!character1.getIsAlive() && !character2.getIsAlive()) {
+                System.out.println("\n¡Ha habido un empate!");
+                System.out.println("\nSe procede a la revancha");
+
+                character1.setCurrentHp(character1.getHp());
+                character2.setCurrentHp(character2.getHp());
+            }
+
+        } while (character1.getIsAlive() && character2.getIsAlive());
+
+        if (character1.getIsAlive()) {
+            System.out.println("\n¡Ha ganado " + character1.getName() + "!");
+        } else {
+            System.out.println("\n¡Ha ganado " + character2.getName() + "!");
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Wizard extends Character{
+public class Wizard extends Character {
     private int mana;
     private final int intelligence;
 
@@ -34,11 +34,11 @@ public class Wizard extends Character{
         int hp = characterToAttack.getHp();
         int currentHp = characterToAttack.getCurrentHp();
 
-        if(attackToDo == 1 && mana >= 5){
+        if (attackToDo == 1 && mana >= 5) {
             currentHp -= damageHeavyAttack;
             mana -= 5;
             System.out.println("\n" + this.getName() + " usa una Bola de Fuego");
-        }else{
+        } else {
             currentHp -= damageWeakAttack;
             mana += 1;
             System.out.println("\n" + this.getName() + " usa un Golpe de Bastón");
