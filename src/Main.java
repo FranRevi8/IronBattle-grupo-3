@@ -9,7 +9,7 @@ public class Main {
         System.out.println("2. Una vez creados los personajes, pulsa ENTER para iniciar el combate y después de cada turno para continuar.");
         System.out.println("3. ¡Sólo puede quedar uno! El combate continuará hasta que alguno de los combatientes sea dado de baja.");
         System.out.println("4. Si los dos personajes mueren a la vez habrá empate. El combate se repetirá.");
-        System.out.println("5. Pulsa X + ENTER en cualquier momento para salir.");
+        System.out.println("5. Escribe X y pulsa ENTER en cualquier momento para salir.");
         System.out.println("\nElige la clase del primer personaje:");
 
         String name;
@@ -28,8 +28,11 @@ public class Main {
         }
         ;
 
-        int response = scanner.nextInt();
-        scanner.nextLine();
+        String input = scanner.nextLine();
+
+        if (input.toLowerCase().equals("x")){return;}
+
+        int response = Integer.parseInt(input);
 
         System.out.println("\nEl tipo de personaje elegido es " + CharacterType.values()[response]);
         System.out.println("\n¿Como llamamos a este personaje?");
@@ -63,8 +66,10 @@ public class Main {
         }
         ;
 
-        response = scanner.nextInt();
-        scanner.nextLine();
+        input = scanner.nextLine();
+        if (input.toLowerCase().equals("x")){return;}
+
+        response = Integer.parseInt(input);
 
         System.out.println("\nEl tipo de personaje elegido es " + CharacterType.values()[response]);
         System.out.println("\n¿Como llamamos a este personaje?");
@@ -92,13 +97,25 @@ public class Main {
         ;
 
         System.out.println("\n¡Se enfrentarán " + character1.getName() + " y " + character2.getName() + "!");
-
+        System.out.println("\n¡Empieza el combate!");
         do {
-            System.out.println("\nPulsa ENTER para iniciar el combate");
+            System.out.println("\nPulsa ENTER para continuar");
+
+            input = scanner.nextLine();
+            if (input.toLowerCase().equals("x")){return;}
+
             character1.attack(character2);
             character2.attack(character1);
 
-
         } while (character1.getIsAlive() && character2.getIsAlive());
+
+        if(character1.getIsAlive()){
+            System.out.println("\n¡Ha ganado " + character1.getName() + "!");
+        }else if(character2.getIsAlive()) {
+            System.out.println("\n¡Ha ganado " + character2.getName() + "!");
+        }else{
+            System.out.println("\n¡Ha habido un empate!");
+        }
     }
+    private void repeat(){}
 }
