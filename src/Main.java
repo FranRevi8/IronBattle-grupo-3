@@ -57,7 +57,7 @@ public class Main {
         System.out.println("\nEl tipo de personaje elegido es " + CharacterType.values()[response]);
         System.out.println("\n¿Como llamamos a este personaje?");
 
-        name = scanner.nextLine();
+        name = scanner.nextLine().toUpperCase();
 
         System.out.println("\nEl nombre elegido es  " + name);
 
@@ -96,7 +96,7 @@ public class Main {
         System.out.println("\nEl tipo de personaje elegido es " + CharacterType.values()[response]);
         System.out.println("\n¿Como llamamos a este personaje?");
 
-        name = scanner.nextLine();
+        name = scanner.nextLine().toUpperCase();
 
         System.out.println("\nEl nombre elegido es  " + name);
 
@@ -195,12 +195,12 @@ public class Main {
             int strength = 1 + random.nextInt(10);
             int stamina = 10 + random.nextInt(41);
             hp = 100 + random.nextInt(101);
-            character1 = new Warrior("Jugador1", CharacterType.WARRIOR, hp, strength, stamina);
+            character1 = new Warrior(autoName(), CharacterType.WARRIOR, hp, strength, stamina);
         } else {
             int mana = 10 + random.nextInt(41);
             int intelligence = 1 + random.nextInt(50);
             hp = 100 + random.nextInt(101);
-            character1 = new Wizard("Jugador1", CharacterType.WIZARD, hp, mana, intelligence);
+            character1 = new Wizard(autoName(), CharacterType.WIZARD, hp, mana, intelligence);
         }
 
         randomCreator = 1 + random.nextInt(2);
@@ -209,12 +209,12 @@ public class Main {
             int strength = 1 + random.nextInt(10);
             int stamina = 10 + random.nextInt(41);
             hp = 100 + random.nextInt(101);
-            character2 = new Warrior("Jugador2", CharacterType.WARRIOR, hp, strength, stamina);
+            character2 = new Warrior(autoName(), CharacterType.WARRIOR, hp, strength, stamina);
         } else {
             int mana = 10 + random.nextInt(41);
             int intelligence = 1 + random.nextInt(50);
             hp = 100 + random.nextInt(101);
-            character2 = new Wizard("Jugador2", CharacterType.WIZARD, hp, mana, intelligence);
+            character2 = new Wizard(autoName(), CharacterType.WIZARD, hp, mana, intelligence);
         }
 
         System.out.println("\n¡Se enfrentarán " + character1.getName() + " y " + character2.getName() + "!");
@@ -271,6 +271,12 @@ public class Main {
         } else {
             System.out.println("\n¡Ha ganado " + character2.getName() + "!");
         }
+    }
+
+    private static String autoName() {
+        Random random = new Random();
+        int selectedNumber = random.nextInt(121);
+        return AutoNames.values()[selectedNumber].name();
     }
 
 }
