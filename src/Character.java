@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-public class Character {
+public class Character implements Attacker{
     private final String id;
     private String name;
     private int hp;
@@ -44,5 +44,10 @@ public class Character {
 
     public CharacterType getType() {
         return type;
+    }
+
+    @Override
+    public void attack(Character characterToAttack) {
+
     }
 }

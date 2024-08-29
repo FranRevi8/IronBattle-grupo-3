@@ -1,3 +1,3 @@
-public interface Attacker {
+public abstract interface Attacker {
     void attack(Character characterToAttack);
 }

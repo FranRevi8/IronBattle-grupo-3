@@ -4,7 +4,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("\nBienvenido al juego IRONBATTLE");
-        System.out.println("\nElige al primer personaje:");
+        System.out.println("\nLas reglas son las siguientes:");
+        System.out.println("\n1. Se enfrentarán dos personajes. Tienes que elegir la clase de cada uno, además de sus nombres.");
+        System.out.println("2. Una vez creados los personajes, pulsa ENTER para iniciar el combate y después de cada turno para continuar.");
+        System.out.println("3. ¡Sólo puede quedar uno! El combate continuará hasta que alguno de los combatientes sea dado de baja.");
+        System.out.println("4. Si los dos personajes mueren a la vez habrá empate. El combate se repetirá.");
+        System.out.println("5. Pulsa X + ENTER en cualquier momento para salir.");
+        System.out.println("\nElige la clase del primer personaje:");
 
         String name;
         CharacterType type;
@@ -50,7 +56,7 @@ public class Main {
         }
         ;
 
-        System.out.println("\nElige al segundo personaje:");
+        System.out.println("\nElige la clase del segundo personaje:");
 
         for (CharacterType character : CharacterType.values()) {
             System.out.println(character.ordinal() + "-" + character.name());
@@ -85,8 +91,14 @@ public class Main {
         }
         ;
 
-        System.out.println("\n¡Que comience la batalla entre " + character1.getName() + " y " + character2.getName() + "!");
+        System.out.println("\n¡Se enfrentarán " + character1.getName() + " y " + character2.getName() + "!");
+
+        do {
+            System.out.println("\nPulsa ENTER para iniciar el combate");
+            character1.attack(character2);
+            character2.attack(character1);
 
 
+        } while (character1.getIsAlive() && character2.getIsAlive());
     }
 }

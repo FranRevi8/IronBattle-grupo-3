@@ -1,4 +1,6 @@
-public class Wizard extends Character implements Attacker{
+import java.util.Random;
+
+public class Wizard extends Character{
     private int mana;
     private final int intelligence;
 
@@ -24,6 +26,21 @@ public class Wizard extends Character implements Attacker{
     @Override
     public void attack(Character characterToAttack) {
 
+        Random random = new Random();
+
+        int damageHeavyAttack = intelligence;
+        int damageWeakAttack = 2;
+        int attackToDo = 1 + random.nextInt(2);
+        int hp = characterToAttack.getHp();
+
+        if(attackToDo == 1){
+            hp -= damageHeavyAttack;
+        }else{
+            hp -= damageWeakAttack;
+        }
+        characterToAttack.setHp(hp);
+
+        System.out.println("\n" + this.getName() + " ha atacado y ha dejado a " + characterToAttack.getName() +" con " + characterToAttack.getHp() + " puntos de vida.");
     }
 }
 
